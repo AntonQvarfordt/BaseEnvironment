@@ -74,6 +74,9 @@ Shader "Hidden/HxVolumetricSpotLight"
 		#endif
 	};
 
+
+
+
 	v2f vert(appdata v)
 	{
 		v2f o;
@@ -81,7 +84,7 @@ Shader "Hidden/HxVolumetricSpotLight"
 		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = ComputeScreenPos(o.pos);
 #ifdef FULL_ON
-		o.ray = mul(UNITY_MATRIX_MV, v.vertex).xyz * float3(1, 1, 1);
+		o.ray = mul(UnityObjectToViewPos(v.vertex)).xyz * float3(1, 1, 1);
 #endif
 #else
 		o.pos = mul(VolumetricMVP, v.vertex);
@@ -101,7 +104,7 @@ Shader "Hidden/HxVolumetricSpotLight"
 		o.pos.z = min(_ProjectionParams.z, o.pos.z);
 		o.uv = ComputeScreenPos(o.pos);
 #ifdef FULL_ON
-		o.ray = mul(UNITY_MATRIX_MV, v.vertex).xyz;
+		o.ray = mul(UnityObjectToViewPos(v.vertex)).xyz;
 #endif
 #else
 		o.pos = mul(VolumetricMVP, v.vertex);

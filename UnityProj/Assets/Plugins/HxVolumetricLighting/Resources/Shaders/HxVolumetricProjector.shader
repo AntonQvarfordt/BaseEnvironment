@@ -1,3 +1,8 @@
+
+
+
+
+
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 // Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
@@ -81,18 +86,20 @@ Shader "Hidden/HxVolumetricProjector"
 		o.pos = UnityObjectToClipPos(v.vertex);
 		o.uv = ComputeScreenPos(o.pos);
 #ifdef FULL_ON
-		o.ray = mul(UNITY_MATRIX_MV, v.vertex).xyz * float3(1, 1, 1);
+		o.ray = mul(UnityObjectToViewPos(v.vertex)).xyz * float3(1, 1, 1);
 #endif
 #else
 		o.pos = mul(VolumetricMVP, v.vertex);
 		o.uv = ComputeScreenPos(o.pos);
 #ifdef FULL_ON
-		o.ray = mul(VolumetricMV, v.vertex).xyz * float3(1, 1, 1);
+		o.ray = mul(UnityObjectToViewPos(v.vertex)).xyz * float3(1, 1, 1);
 #endif
 #endif
 		return o;
 	}
 
+
+	//UnityObjectToViewPos(v.vertex) 
 	v2f vert2(appdata v)
 	{
 		v2f o;

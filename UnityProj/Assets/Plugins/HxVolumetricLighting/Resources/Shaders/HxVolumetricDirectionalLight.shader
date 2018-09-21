@@ -16,7 +16,7 @@ Shader "Hidden/HxVolumetricDirectionalLight"
 #pragma shader_feature SHADOWS_OFF
 
 //#pragma multi_compile _ SHADOWS_NATIVE
-#pragma shader_feature UNITY_SINGLE_PASS_STEREO
+//#pragma shader_feature UNITY_SINGLE_PASS_STEREO
 #pragma shader_feature DENSITYPARTICLES_ON
 #pragma shader_feature VTRANSPARENCY_ON
 #pragma shader_feature FULL_ON
